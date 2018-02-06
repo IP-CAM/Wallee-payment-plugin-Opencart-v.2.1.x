@@ -269,9 +269,17 @@ abstract class ControllerExtensionPaymentWalleeBase extends AbstractController {
 		if ($labels) {
 			foreach ($labels as $label_id => $label_value) {
 				$label_decriptor = \Wallee\Provider\LabelDescriptor::instance($this->registry)->find($label_id);
+				if(!$label_decriptor) {
+					\WalleeHelper::instance($this->registry)->log("Could not find label descriptor for id $label_id, skipping", \WalleeHelper::LOG_ERROR);
+					continue;
+				}
 				$group_id = $label_decriptor->getGroup();
 				if (!isset($display_labels[$group_id])) {
 					$label_group = \Wallee\Provider\LabelDescriptionGroup::instance($this->registry)->find($group_id);
+					if(!$label_group) {
+						\WalleeHelper::instance($this->registry)->log("Could not find label group for id $group_id, skipping", \WalleeHelper::LOG_ERROR);
+						continue;
+					}
 					$display_labels[$group_id] = array(
 						'name' => htmlspecialchars(\WalleeHelper::instance($this->registry)->translate($label_group->getName()),
 								ENT_HTML5 | ENT_QUOTES),

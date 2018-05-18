@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+	<code>WalleeEvents</code>
+	<name>wallee events: handle events unavailable in Opencart 2.0.x and 2.1.x.
+	</name>
+	<version>1.0.0</version>
+	<author>Customweb GmbH</author>
+	<link>http://github.com/wallee-payment/opencart</link>
+	<file path="catalog/controller/common/header.php">
+		<operation>
+			<search><![CDATA[
+		$data['analytics'] = array();
+            ]]></search>
+			<add position="before"><![CDATA[
+		try{
+			$this->load->controller('extension/wallee/event/includeDeviceIdentifier');
+			
+			\WalleeHelper::instance($this->registry)->refreshWebhook();
+			\Wallee\Entity\Cron::cleanUpHangingCrons($this->registry);
+			\Wallee\Entity\Cron::insertNewPendingCron($this->registry);
+			$wallee_cron_token = \Wallee\Entity\Cron::getCurrentSecurityTokenForPendingCron($this->registry);
+			if($wallee_cron_token) {
+				$data['wallee_cron'] = \WalleeVersionHelper::createUrl($this->url, 'extension/wallee/cron', array('security_token' => $wallee_cron_token), $this->config->get('config_secure'));
+			}
+		} catch (Exception $e) { \WalleeHelper::instance($this->registry)->log($e->getMessage()); }
+            ]]></add>
+		</operation>
+	</file>
+	<file path="admin/controller/extension/modification.php">
+		<operation>
+			<search><![CDATA[
+		// Maintance mode back to original settings
+            ]]></search>
+			<add position="before"><![CDATA[
+		$this->load->controller('extension/wallee/event/createMethodConfigurationFiles');
+            ]]></add>
+		</operation>
+	</file>
+</modification>

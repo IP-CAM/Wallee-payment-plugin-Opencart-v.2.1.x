@@ -39,6 +39,10 @@ class WalleeVersionHelper {
 			'WalleeFrontendPdf' => array(
 				'file' => 'WalleeFrontendPdf.ocmod.xml',
 				'default_status' => 1
+			),
+			'WalleeTransactionView' => array(
+				'file' => 'WalleeTransactionView.ocmod.xml',
+				'default_status' => 1
 			)
 		);
 	}

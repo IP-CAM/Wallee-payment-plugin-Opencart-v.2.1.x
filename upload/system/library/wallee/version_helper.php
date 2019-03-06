@@ -28,10 +28,6 @@ class WalleeVersionHelper {
 				'file' => 'WalleeQuickCheckoutCompatibility.ocmod.xml',
 				'default_status' => 0
 			),
-			'WalleeJournalCompatibility' => array(
-				'file' => 'WalleeJournalCompatibility.ocmod.xml',
-				'default_status' => 0
-			),
 			'WalleeXFeeProCompatibility' => array(
 				'file' => 'WalleeXFeeProCompatibility.ocmod.xml',
 				'default_status' => 0

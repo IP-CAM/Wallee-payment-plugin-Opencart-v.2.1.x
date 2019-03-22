@@ -48,6 +48,8 @@
 				is_file(modification($file))
             ]]></add>
 		</operation>
+	</file>
+	<file path="system/library/language.php">
 		<operation>
 			<search><![CDATA[
 				file_exists($file)
@@ -56,6 +58,8 @@
 				file_exists(modification($file))
             ]]></add>
 		</operation>
+	</file>
+	<file path="system/library/language.php">
 		<operation>
 			<search><![CDATA[
 				require($file)
@@ -75,6 +79,8 @@
 	is_file(modification($file))
             ]]></add>
 		</operation>
+	</file>
+	<file path="system/engine/action.php">
 		<operation>
 			<search><![CDATA[
 	is_file($this->file)
@@ -83,6 +89,8 @@
 	is_file(modification($this->file))
             ]]></add>
 		</operation>
+	</file>
+	<file path="system/engine/action.php">
 		<operation>
 			<search><![CDATA[
 	include_once($file)
@@ -101,6 +109,8 @@
 	is_file(modification($file))
             ]]></add>
 		</operation>
+	</file>
+	<file path="system/engine/loader.php">
 		<operation>
 			<search><![CDATA[
 	file_exists($file)
@@ -109,6 +119,8 @@
 	file_exists(modification($file))
             ]]></add>
 		</operation>
+	</file>
+	<file path="system/engine/loader.php">
 		<operation>
 			<search><![CDATA[
 	require($file)
@@ -117,6 +129,8 @@
 	require(modification($file))
             ]]></add>
 		</operation>
+	</file>
+	<file path="system/engine/loader.php">
 		<operation>
 			<search><![CDATA[
 	include_once($file)

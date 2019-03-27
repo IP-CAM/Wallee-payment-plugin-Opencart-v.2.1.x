@@ -65,8 +65,11 @@ class WalleeVersionHelper {
 	}
 
 	public static function getTemplate($theme, $template){
-	    if (file_exists(DIR_TEMPLATE . $theme . '/template/' . $template)) {
+	    if (file_exists(DIR_TEMPLATE . $theme . '/template/' . $template . ".tpl")) {
 	        return $theme . '/template/' . $template . ".tpl";
+	    }
+	    else if (file_exists(DIR_TEMPLATE . $template . ".tpl")) {
+	    	return $template . ".tpl";
 	    }
 	    else {
 	        return 'default/template/' . $template . ".tpl";
